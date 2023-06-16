@@ -1,14 +1,25 @@
-const express = require("express")
-const cors = require("cors")
-const app = express()
-const nodemailer = require("nodemailer")
-const dotenv = require('dotenv').config()
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const nodemailer = require("nodemailer");
+const dotenv = require('dotenv').config();
+const mg = require('nodemailer-mailgun-transport');
 
-const PORT = (process.env.PORT || 8000);
+const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Configuration du transport Mailgun
+const auth = {
+  auth: {
+    api_key: process.env.MAILGUN_API_KEY,
+    domain: process.env.MAILGUN_DOMAIN,
+  },
+};
+
+const transporter = nodemailer.createTransport(mg(auth));
 
 app.get("/", (req, res) => {
   res.send("Hello server");
@@ -16,22 +27,8 @@ app.get("/", (req, res) => {
 
 app.post("/post", async (req, res) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'Outlook365',
-      
-      auth: {
-        user: process.env.OUTLOOK_USERNAME,
-        pass: process.env.OUTLOOK_PASSWORD,
-      },
-      /*authMethod: 'PLAIN',
-      authOptions: {
-      user: process.env.VERCEL_SECRET_OUTLOOK_USERNAME,
-      pass: process.env.VERCEL_SECRET_OUTLOOK_PASSWORD,
-      },*/
-    })
-
     const mailOptions = {
-      from:  process.env.MAIL,
+      from: process.env.MAIL,
       to: process.env.MAIL,
       subject: "Formulaire de contact",
       text: `From: ${req.body.email}\nSubject: ${req.body.object}\n\n${req.body.message}`,
@@ -51,6 +48,5 @@ app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 
+module.exports = app;
 
-
-module.exports = app
