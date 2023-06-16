@@ -17,7 +17,8 @@ app.get("/", (req, res) => {
 app.post("/post", async (req, res) => {
   try {
     const transporter = nodemailer.createTransport({
-      service: 'hotmail',
+      service: 'Outlook365',
+      
       auth: {
         user: process.env.OUTLOOK_USERNAME,
         pass: process.env.OUTLOOK_PASSWORD,
