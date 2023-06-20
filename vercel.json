@@ -10,12 +10,5 @@
           "src": "/(.*)",
           "dest": "server.js"
         }
-    ],
-        "headers": [
-          {
-            "headers": [
-              { "key": "Access-Control-Allow-Origin", "value": "https://portfolio-frontend-celinegrc.vercel.app" }
-            ]
-          }
-        ]   
+    ]   
 }
