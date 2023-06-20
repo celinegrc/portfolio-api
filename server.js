@@ -8,7 +8,7 @@ const mg = require('nodemailer-mailgun-transport');
 const PORT = process.env.PORT || 8000;
 
 const corsOptions = {
-  origin: "https://portfolio-frontend-celinegrc.vercel.app/contact" 
+  origin: "https://portfolio-frontend-celinegrc.vercel.app/" 
 };
 
 app.use(cors(corsOptions));
