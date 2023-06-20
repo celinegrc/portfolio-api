@@ -10,5 +10,13 @@
           "src": "/(.*)",
           "dest": "server.js"
         }
-    ]
-  }
+    ],
+        "headers": [
+          {
+            "source": "/post",
+            "headers": [
+              { "key": "Access-Control-Allow-Origin", "value": "https://portfolio-frontend-celinegrc.vercel.app" }
+            ]
+          }
+        ]   
+}
