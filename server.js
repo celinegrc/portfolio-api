@@ -6,13 +6,7 @@ const dotenv = require('dotenv').config();
 const mg = require('nodemailer-mailgun-transport');
 
 const PORT = process.env.PORT || 8000;
-
-const corsOptions = {
-  origin: 'https://portfolio-frontend-celinegrc.vercel.app/',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -30,7 +24,7 @@ app.get("/", (req, res) => {
   res.send("Hello server");
 });
 
-app.post("/post", cors(corsOptions), async (req, res) => {
+app.post("/post", async (req, res) => {
   try {
     const mailOptions = {
       from: process.env.MAIL,
