@@ -1,5 +1,5 @@
 const express = require("express")
-//const cors = require("cors")
+const cors = require("cors")
 const helmet = require('helmet')
 const app = express()
 const nodemailer = require("nodemailer")
@@ -9,7 +9,7 @@ const { body, validationResult } = require('express-validator')
 
 const PORT = process.env.PORT || 8000
 app.use(helmet())
-//app.use(cors())
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
