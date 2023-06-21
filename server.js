@@ -41,7 +41,7 @@ async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  if (req.get('Origin') !== 'https://portfolio-frontend-phi-topaz.vercel.app') {
+  if (req.get('Origin') !== process.env.AUTHORIZED_DOMAIN ) {
     return res.status(403).json({ error: "Access Forbidden" });
   }
 
