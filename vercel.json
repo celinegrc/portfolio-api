@@ -8,7 +8,13 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "server.js",
+        "dest": "server.js"
+       
+      }
+    ],
+    "headers": [
+      {
+        "source": "/api/(.*)",
         "headers": [
           { "key": "Access-Control-Allow-Credentials", "value": "true" },
           { "key": "Access-Control-Allow-Origin", "value": "https://portfolio-frontend-phi-topaz.vercel.app" },
@@ -17,5 +23,6 @@
         ]
       }
     ]
+
   }
   
