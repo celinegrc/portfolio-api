@@ -5,13 +5,16 @@ const app = express()
 const nodemailer = require("nodemailer")
 const dotenv = require('dotenv').config()
 const mg = require('nodemailer-mailgun-transport')
-
+const { body, validationResult } = require('express-validator')
 
 const PORT = process.env.PORT || 8000
 app.use(helmet())
-app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+  origin: "https://portfolio-frontend-phi-topaz.vercel.app/"
+}));
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 // Configuration du transport Mailgun
 const auth = {
@@ -21,8 +24,8 @@ const auth = {
   },
 };
 
-const transporter = nodemailer.createTransport(mg(auth));
-const { body, validationResult } = require('express-validator');
+const transporter = nodemailer.createTransport(mg(auth))
+
 
 app.get("/", (req, res) => {
   res.send("Hello server");
