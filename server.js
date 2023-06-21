@@ -10,7 +10,7 @@ const { body, validationResult } = require('express-validator')
 const PORT = process.env.PORT || 8000
 app.use(helmet())
 app.use(cors({
-  origin: "https://votre-domaine-front.com"
+  origin: "https://portfolio-frontend-phi-topaz.vercel.app/"
 }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
