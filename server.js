@@ -1,9 +1,9 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
-const nodemailer = require("nodemailer");
-const dotenv = require('dotenv').config();
-const mg = require('nodemailer-mailgun-transport');
+const express = require("express")
+const cors = require("cors")
+const app = express()
+const nodemailer = require("nodemailer")
+const dotenv = require('dotenv').config()
+const mg = require('nodemailer-mailgun-transport')
 
 const PORT = process.env.PORT || 8000;
 app.use(cors())
