@@ -1,14 +1,23 @@
 {
     "builds": [
-        {
-            "src": "server.js",
-            "use": "@vercel/node"
-        }
+      {
+        "src": "server.js",
+        "use": "@vercel/node"
+      }
     ],
     "routes": [
-        {
-          "src": "/(.*)",
-          "dest": "server.js"
+      {
+        "src": "/post",
+        "dest": "server.js",
+        "methods": ["POST"],
+        "headers": {
+          "Access-Control-Allow-Origin": "https://portfolio-frontend-phi-topaz.vercel.app/"
         }
-    ]   
-}
+      },
+      {
+        "src": "/(.*)",
+        "dest": "server.js"
+      }
+    ]
+  }
+  
