@@ -22,12 +22,25 @@ const auth = {
 };
 
 const transporter = nodemailer.createTransport(mg(auth));
+const { body, validationResult } = require('express-validator');
 
 app.get("/", (req, res) => {
   res.send("Hello server");
 });
 
-app.post("/post", async (req, res) => {
+
+app.post("/post",  [
+  body('email').isEmail().normalizeEmail(),
+  body('object').notEmpty(),
+  body('message').isLength({ min: 10 }),
+],
+async (req, res) => {
+  // Vérifier les erreurs de validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
     const mailOptions = {
       from: process.env.MAIL,
