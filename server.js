@@ -31,7 +31,6 @@ app.get("/", (req, res) => {
 
 app.post("/post",  [
   body('email').isEmail().normalizeEmail(),
-  body('object').notEmpty(),
   body('message').isLength({ min: 10 }),
 ],
 async (req, res) => {
